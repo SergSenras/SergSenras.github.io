@@ -103,9 +103,9 @@ function getRandomSpeed() {
 } 
 
 const player = new Player(START_X, START_Y);
-let allEnemies = [new Enemy(-BLOCK_WIDTH, BLOCK_HEIGHT - OFFSET, getRandomSpeed()),
-                  new Enemy(-BLOCK_WIDTH, BLOCK_HEIGHT * 2 - OFFSET, getRandomSpeed()),
-                  new Enemy(-BLOCK_WIDTH, BLOCK_HEIGHT * 3 - OFFSET, getRandomSpeed())];
+let allEnemies = [new Enemy(-BLOCK_WIDTH, BLOCK_HEIGHT - OFFSET, getRandomSpeed(), player),
+                  new Enemy(-BLOCK_WIDTH, BLOCK_HEIGHT * 2 - OFFSET, getRandomSpeed(), player),
+                  new Enemy(-BLOCK_WIDTH, BLOCK_HEIGHT * 3 - OFFSET, getRandomSpeed(), player)];
 
 document.addEventListener('keyup', function(e) {
   var allowedKeys = {
