@@ -17,7 +17,7 @@ class Dweller {
     this.friends = friends;
   }
 
-  getInfo() {
+  toString(props) {
     return ['species','name','gender','legs','saying','friends']
       .map( x => '<b>' + x + '</b>: ' + this[x] )
       .join('; ');
@@ -28,10 +28,6 @@ class Animal extends Dweller {
   constructor(species,name,gender,legs = 4,saying,friends) {
     super(species,name,gender,legs,saying,friends);
   }
-  
-  getInfo() {
-    return super.getInfo();
-  }
 }
 
 class Human extends Dweller {
@@ -40,9 +36,9 @@ class Human extends Dweller {
     this.hands = hands;
   }
 
-  getInfo() {
-    let humanProps = '; <b>hands:</b> ' + this.hands;
-    return super.getInfo() + humanProps;
+  toString() {
+    let humanProps = '; <b>hands:</b> ' + this.hands
+    return super.toString() + humanProps;
   }
 }
 
@@ -54,7 +50,7 @@ var cat = new Animal ('cat','Mrs. Whiskerson','female',4,'meow',['Mary', 'Selina
 var Catwoman = new Human ('Catwoman','Selina Kyle','female',cat.saying,['John', 'Mrs. Whiskerson']);
 
 var family = [man, woman, dog, cat, Catwoman];
-family.forEach(member => {
-  print(member.getInfo());
-})  
+family.forEach(function(member){
+  print(member);
+});
 
