@@ -15,6 +15,7 @@ const WRAPPER = document.getElementById('container');
 var src = []
    ,cardDeck = []
    ,comparedCards = [];
+
 for(var i = 0; i < cardsImages.length; i++){
   var j = 0;
   while(j < DUPLICATE_AMOUNT ){
@@ -51,22 +52,11 @@ function showCard(event) {
 
     comparedCards.push(selectedCard);
     if(comparedCards.length == 2){
+      // disable click while check matching
       WRAPPER.classList.add('disableDiv');
       cardsMatch();
     }
   } 
-
-  //var selectedElemName = event.path[1].className.replace('back ','');
-  /*for(var i = 0; i < event.path.length; i++){
-    var desiredDiv = event.path[i].className;
-    if(desiredDiv){
-      if(desiredDiv.indexOf('card-container') > -1)
-        event.path[i].classList.toggle('hover');
-      else if(desiredDiv.indexOf('front') > -1){
-        comparedCards.push({className: event.path[i].className.replace('front ',''), element: event.path[i]})
-      }
-    }
-  }*/
 }
 
 // remove cards if they match
@@ -82,21 +72,9 @@ function cardsMatch() {
         })
       }
       comparedCards = [];
+      // enable click
       WRAPPER.classList.remove('disableDiv');
     }, 1000);
-
-  /*if(comparedCards.length == 2){
-    if(comparedCards[0].className == comparedCards[1].className){
-      arr = Array.from(document.getElementsByClassName(comparedCards[0].className));
-      setTimeout(function(){
-        arr.forEach( x => x.style.visibility = 'hidden');
-      }, 1000)
-    }
-    else{
-      
-    }
-    comparedCards = [];
-  }*/
 }
 
 document.addEventListener('DOMContentLoaded', function(){
