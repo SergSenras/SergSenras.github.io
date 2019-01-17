@@ -5,10 +5,9 @@ const URL = 'https://randomuser.me/api/?results=40';
 
 let persons = [];
 let displayList = [];
-let searchStr = '';
 
-async function loadXMLDoc() {
-  let response = await fetch(URL)
+function getPeopleData() {
+  let response = fetch(URL)
                   .then(data => data.json())
                   .then(function(data){
                     persons = data.results;
@@ -42,7 +41,7 @@ function displayCards() {
 }
 
 document.addEventListener('DOMContentLoaded', function(){  
-  loadXMLDoc();
+  getPeopleData();
 
   SIDEBAR.addEventListener('click', function(event){
     let radio = event.target.closest('.rdBtn');
@@ -78,9 +77,10 @@ document.addEventListener('DOMContentLoaded', function(){
     displayCards();
   })
 
-  SEARCH_FIELD.addEventListener('keyup', function(event){
-    searchStr = SEARCH_FIELD.value;
-    displayList = persons.filter(el => el.name.last.indexOf(searchStr) != -1 || el.name.first.indexOf(searchStr) != -1)
+  SEARCH_FIELD.addEventListener('input', function(event){
+    let searchStr = '';
+    searchStr = SEARCH_FIELD.value.trim();
+    displayList = persons.filter(el => el.name.last.includes(searchStr));
     displayCards();
   })
 });
